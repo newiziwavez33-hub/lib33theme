@@ -1,0 +1,543 @@
+/**
+ * Editor Styles for City Library Theme
+ * Полная WYSIWYG-синхронизация редактора Gutenberg с фронтендом полной статьи
+ *
+ * Базовый кегль: 16px (1rem, калибровка -2px)
+ * Шрифты: Montserrat (заголовки и основной текст), Inter, Merriweather
+ */
+
+/* ==========================================================================
+   0. CSS Переменные (Fallback)
+   ========================================================================== */
+:root,
+body,
+.editor-styles-wrapper {
+    --primary-color: #1c77d9;
+    --secondary-color: #1A3C34;
+    --btn-bg: #1c77d9;
+    --btn-text: #ffffff;
+    --btn-hover-bg: #1668c2;
+    --btn-hover-text: #ffffff;
+}
+
+/* ==========================================================================
+   1. Контейнер статьи и симуляция холста фронтенда
+   ========================================================================== */
+body,
+.editor-styles-wrapper {
+    background-color: #f6f8f6;
+    font-family: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1rem; /* 16px базовый кегль */
+    line-height: 1.75;
+    color: #334155;
+    padding: 2.5rem 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Симуляция карточки статьи (как на single.php) */
+.editor-styles-wrapper .wp-block-post-content,
+.editor-styles-wrapper .block-editor-block-list__layout {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    padding: 2.5rem 3rem;
+    border-radius: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f1f5f9;
+    box-sizing: border-box;
+}
+
+/* Ограничение ширины блоков */
+.editor-styles-wrapper .wp-block {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.editor-styles-wrapper .wp-block[data-align="wide"] {
+    max-width: 1040px;
+}
+.editor-styles-wrapper .wp-block[data-align="full"] {
+    max-width: none;
+}
+
+/* ==========================================================================
+   2. Базовая типографика (-2px: 16px baseline)
+   ========================================================================== */
+.editor-styles-wrapper p,
+.editor-styles-wrapper .wp-block-paragraph {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+}
+
+.editor-styles-wrapper p:not([class*="has-"]) {
+    color: #334155;
+}
+
+/* Буквица (Drop Cap) */
+.editor-styles-wrapper .has-drop-cap:not(:focus)::first-letter {
+    float: left;
+    font-size: 3.5rem;
+    line-height: 0.8;
+    font-weight: 700;
+    margin-right: 0.75rem;
+    margin-top: 0.15rem;
+    color: #0f172a;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Полужирный, курсив, подчеркивание, зачеркивание, маркер */
+.editor-styles-wrapper strong,
+.editor-styles-wrapper b {
+    font-weight: 700;
+    color: #0f172a;
+}
+.editor-styles-wrapper em,
+.editor-styles-wrapper i {
+    font-style: italic;
+}
+.editor-styles-wrapper u {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.editor-styles-wrapper s,
+.editor-styles-wrapper del {
+    text-decoration: line-through;
+}
+.editor-styles-wrapper mark {
+    background-color: #fef08a;
+    color: #0f172a;
+    padding: 0.1em 0.3em;
+    border-radius: 0.25rem;
+}
+
+/* Ссылки */
+.editor-styles-wrapper a {
+    color: var(--primary-color, #1c77d9);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+.editor-styles-wrapper a:hover {
+    color: var(--btn-hover-bg, #1668c2);
+}
+
+/* ==========================================================================
+   3. Иерархия заголовков (H1 - H6)
+   ========================================================================== */
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper h5,
+.editor-styles-wrapper h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: #0f172a;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+}
+.editor-styles-wrapper h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+}
+.editor-styles-wrapper h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2.25rem;
+    margin-bottom: 0.875rem;
+}
+.editor-styles-wrapper h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+}
+.editor-styles-wrapper h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.editor-styles-wrapper h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+.editor-styles-wrapper h6 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   4. Выравнивание текста и блоков
+   ========================================================================== */
+.editor-styles-wrapper .has-text-align-left { text-align: left !important; }
+.editor-styles-wrapper .has-text-align-center { text-align: center !important; }
+.editor-styles-wrapper .has-text-align-right { text-align: right !important; }
+.editor-styles-wrapper .has-text-align-justify { text-align: justify !important; }
+
+.editor-styles-wrapper .aligncenter {
+    display: table;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.editor-styles-wrapper .alignleft {
+    float: left;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+    max-width: 50%;
+}
+.editor-styles-wrapper .alignright {
+    float: right;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    max-width: 50%;
+}
+
+/* ==========================================================================
+   5. Списки (Lists)
+   ========================================================================== */
+.editor-styles-wrapper ul,
+.editor-styles-wrapper ol,
+.editor-styles-wrapper .wp-block-list {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+    color: #334155;
+}
+.editor-styles-wrapper ul { list-style-type: disc; }
+.editor-styles-wrapper ol { list-style-type: decimal; }
+.editor-styles-wrapper ul ul,
+.editor-styles-wrapper ol ul { list-style-type: circle; margin-top: 0.35rem; margin-bottom: 0.35rem; }
+.editor-styles-wrapper ul ol,
+.editor-styles-wrapper ol ol { list-style-type: lower-alpha; margin-top: 0.35rem; margin-bottom: 0.35rem; }
+.editor-styles-wrapper li {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+}
+.editor-styles-wrapper li:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   6. Цитаты (Blockquotes) и выносные цитаты (Pullquotes)
+   ========================================================================== */
+.editor-styles-wrapper blockquote,
+.editor-styles-wrapper .wp-block-quote {
+    border-left: 5px solid var(--primary-color, #1c77d9);
+    background-color: #f8fafc;
+    padding: 1.75rem 2.25rem;
+    border-radius: 0 1.25rem 1.25rem 0;
+    margin: 2.25rem 0;
+    position: relative;
+    overflow: hidden;
+}
+.editor-styles-wrapper .wp-block-quote p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    font-style: italic;
+    color: #334155;
+    margin-bottom: 0.5rem;
+}
+.editor-styles-wrapper .wp-block-quote cite {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-style: normal;
+    font-weight: 600;
+    display: block;
+    margin-top: 0.5rem;
+}
+.editor-styles-wrapper .wp-block-quote::before {
+    content: '\201c';
+    position: absolute;
+    top: -0.5rem;
+    left: 0.75rem;
+    font-size: 6rem;
+    color: var(--primary-color, #1c77d9);
+    opacity: 0.12;
+    font-family: serif;
+    line-height: 1;
+    pointer-events: none;
+}
+.editor-styles-wrapper .wp-block-pullquote {
+    border-top: 3px solid var(--primary-color, #1c77d9);
+    border-bottom: 3px solid var(--primary-color, #1c77d9);
+    padding: 2rem 1.5rem;
+    margin: 2.5rem 0;
+    text-align: center;
+}
+.editor-styles-wrapper .wp-block-pullquote blockquote {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 1.35rem;
+}
+
+/* ==========================================================================
+   7. Кнопки (Buttons)
+   ========================================================================== */
+.editor-styles-wrapper .wp-block-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+.editor-styles-wrapper .wp-block-buttons.is-content-justification-left { justify-content: flex-start; }
+.editor-styles-wrapper .wp-block-buttons.is-content-justification-center { justify-content: center; }
+.editor-styles-wrapper .wp-block-buttons.is-content-justification-right { justify-content: flex-end; }
+.editor-styles-wrapper .wp-block-buttons.is-content-justification-space-between { justify-content: space-between; }
+
+.editor-styles-wrapper .wp-block-button__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.35;
+    border-radius: 9999px;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+}
+/* Залитая кнопка по умолчанию (если автор не задал свой фон/текст и не выбрал контур) */
+.editor-styles-wrapper .wp-block-button:not(.is-style-outline) .wp-block-button__link:not(.has-background):not([style*="background-color"]) {
+    background-color: var(--btn-bg, #1c77d9);
+}
+.editor-styles-wrapper .wp-block-button:not(.is-style-outline) .wp-block-button__link:not(.has-text-color):not([style*="color"]) {
+    color: var(--btn-text, #ffffff);
+}
+.editor-styles-wrapper .wp-block-button:not(.is-style-outline) .wp-block-button__link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -2px rgba(28, 119, 217, 0.25);
+}
+/* Стиль контурной кнопки (Outline) */
+.editor-styles-wrapper .wp-block-button.is-style-outline .wp-block-button__link {
+    background-color: transparent !important;
+    border-color: currentColor;
+}
+.editor-styles-wrapper .wp-block-button.is-style-outline .wp-block-button__link:not(.has-text-color):not([style*="color"]) {
+    color: var(--btn-bg, #1c77d9);
+}
+
+/* ==========================================================================
+   8. Таблицы (Tables)
+   ========================================================================== */
+.editor-styles-wrapper .wp-block-table {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+}
+.editor-styles-wrapper .wp-block-table table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    font-size: 0.9375rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.editor-styles-wrapper .wp-block-table th,
+.editor-styles-wrapper .wp-block-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+}
+.editor-styles-wrapper .wp-block-table th {
+    background-color: #f8fafc;
+    font-weight: 700;
+    color: #0f172a;
+}
+.editor-styles-wrapper .wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+    background-color: #f8fafc;
+}
+
+/* ==========================================================================
+   9. Разделители (Separator) и разделительные интервалы (Spacer)
+   ========================================================================== */
+.editor-styles-wrapper hr.wp-block-separator {
+    border: 0;
+    border-top: 2px solid #e2e8f0;
+    margin: 2.5rem auto;
+    width: 100px;
+    max-width: 100%;
+}
+.editor-styles-wrapper .wp-block-separator.is-style-wide {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+.editor-styles-wrapper .wp-block-separator.is-style-dots {
+    border: none;
+    text-align: center;
+    line-height: 1;
+    height: auto;
+}
+.editor-styles-wrapper .wp-block-separator.is-style-dots::before {
+    content: "···";
+    color: #94a3b8;
+    font-size: 1.75rem;
+    letter-spacing: 1.5rem;
+    padding-left: 1.5rem;
+}
+.editor-styles-wrapper .wp-block-spacer {
+    margin-bottom: 0 !important;
+}
+
+/* ==========================================================================
+   10. Исходный код и моноширинный текст (Code & Pre)
+   ========================================================================== */
+.editor-styles-wrapper pre.wp-block-code,
+.editor-styles-wrapper pre {
+    background-color: #0f172a;
+    color: #f8fafc;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+.editor-styles-wrapper code:not(pre code) {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: monospace;
+}
+
+/* ==========================================================================
+   11. Изображения, галереи и подписи
+   ========================================================================== */
+.editor-styles-wrapper .wp-block-image img {
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    height: auto;
+    max-width: 100%;
+}
+.editor-styles-wrapper .wp-block-image.is-style-rounded img {
+    border-radius: 9999px;
+}
+.editor-styles-wrapper figcaption,
+.editor-styles-wrapper .wp-block-image figcaption {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.75rem;
+}
+
+/* ==========================================================================
+   12. Колонки и группы
+   ========================================================================== */
+.editor-styles-wrapper .wp-block-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+}
+.editor-styles-wrapper .wp-block-group {
+    margin-bottom: 1.75rem;
+}
+.editor-styles-wrapper .wp-block-group.has-background {
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+}
+
+/* ==========================================================================
+   13. Цветовая палитра Gutenberg и размеры шрифта
+   ========================================================================== */
+/* Цвета текста */
+.editor-styles-wrapper .has-primary-color { color: var(--primary-color, #1c77d9) !important; }
+.editor-styles-wrapper .has-secondary-color { color: var(--secondary-color, #1A3C34) !important; }
+.editor-styles-wrapper .has-library-green-color { color: #0b7930 !important; }
+.editor-styles-wrapper .has-slate-900-color, .editor-styles-wrapper .has-black-color { color: #0f172a !important; }
+.editor-styles-wrapper .has-slate-700-color { color: #334155 !important; }
+.editor-styles-wrapper .has-slate-500-color, .editor-styles-wrapper .has-cyan-bluish-gray-color { color: #64748b !important; }
+.editor-styles-wrapper .has-slate-50-color { color: #f8fafc !important; }
+.editor-styles-wrapper .has-white-color { color: #ffffff !important; }
+.editor-styles-wrapper .has-pale-pink-color { color: #f78da7 !important; }
+.editor-styles-wrapper .has-vivid-red-color, .editor-styles-wrapper .has-red-color { color: #ef4444 !important; }
+.editor-styles-wrapper .has-luminous-vivid-orange-color { color: #ff6900 !important; }
+.editor-styles-wrapper .has-luminous-vivid-amber-color, .editor-styles-wrapper .has-amber-color { color: #f59e0b !important; }
+.editor-styles-wrapper .has-light-green-cyan-color { color: #7bdcb5 !important; }
+.editor-styles-wrapper .has-vivid-green-cyan-color { color: #00d084 !important; }
+.editor-styles-wrapper .has-pale-cyan-blue-color { color: #8ed1fc !important; }
+.editor-styles-wrapper .has-vivid-cyan-blue-color { color: #0693e3 !important; }
+.editor-styles-wrapper .has-vivid-purple-color { color: #9b51e0 !important; }
+
+/* Цвета фона */
+.editor-styles-wrapper .has-primary-background-color { background-color: var(--primary-color, #1c77d9) !important; }
+.editor-styles-wrapper .has-secondary-background-color { background-color: var(--secondary-color, #1A3C34) !important; }
+.editor-styles-wrapper .has-library-green-background-color { background-color: #0b7930 !important; }
+.editor-styles-wrapper .has-slate-900-background-color, .editor-styles-wrapper .has-black-background-color { background-color: #0f172a !important; }
+.editor-styles-wrapper .has-slate-700-background-color { background-color: #334155 !important; }
+.editor-styles-wrapper .has-slate-500-background-color, .editor-styles-wrapper .has-cyan-bluish-gray-background-color { background-color: #64748b !important; }
+.editor-styles-wrapper .has-slate-50-background-color { background-color: #f8fafc !important; }
+.editor-styles-wrapper .has-white-background-color { background-color: #ffffff !important; }
+.editor-styles-wrapper .has-pale-pink-background-color { background-color: #f78da7 !important; }
+.editor-styles-wrapper .has-vivid-red-background-color, .editor-styles-wrapper .has-red-background-color { background-color: #ef4444 !important; }
+.editor-styles-wrapper .has-luminous-vivid-orange-background-color { background-color: #ff6900 !important; }
+.editor-styles-wrapper .has-luminous-vivid-amber-background-color, .editor-styles-wrapper .has-amber-background-color { background-color: #f59e0b !important; }
+.editor-styles-wrapper .has-light-green-cyan-background-color { background-color: #7bdcb5 !important; }
+.editor-styles-wrapper .has-vivid-green-cyan-background-color { background-color: #00d084 !important; }
+.editor-styles-wrapper .has-pale-cyan-blue-background-color { background-color: #8ed1fc !important; }
+.editor-styles-wrapper .has-vivid-cyan-blue-background-color { background-color: #0693e3 !important; }
+.editor-styles-wrapper .has-vivid-purple-background-color { background-color: #9b51e0 !important; }
+
+/* Отступы для блоков с заливкой */
+.editor-styles-wrapper .has-background {
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+}
+.editor-styles-wrapper p.has-background {
+    padding: 1rem 1.25rem;
+}
+
+/* Размеры шрифта */
+.editor-styles-wrapper .has-small-font-size { font-size: 0.8125rem !important; line-height: 1.5 !important; } /* 13px */
+.editor-styles-wrapper .has-normal-font-size { font-size: 1rem !important; line-height: 1.75 !important; } /* 16px */
+.editor-styles-wrapper .has-medium-font-size { font-size: 1.125rem !important; line-height: 1.6 !important; } /* 18px */
+.editor-styles-wrapper .has-large-font-size { font-size: 1.5rem !important; line-height: 1.4 !important; } /* 24px */
+.editor-styles-wrapper .has-x-large-font-size { font-size: 2rem !important; line-height: 1.3 !important; } /* 32px */
+.editor-styles-wrapper .has-xx-large-font-size { font-size: 2.5rem !important; line-height: 1.2 !important; } /* 40px */
+
+/* ==========================================================================
+   14. Слайдер изображений (city-library/slider) в редакторе
+   ========================================================================== */
+.editor-styles-wrapper .wp-block-city-library-slider {
+    border-radius: 1rem;
+    overflow: hidden;
+    margin: 2rem auto;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    max-width: 860px;
+}
+
+.editor-styles-wrapper .wp-block-city-library-slider img {
+    max-height: 480px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    box-shadow: none !important;
+}
+

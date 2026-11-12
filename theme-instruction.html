@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция по работе с темой City Library</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 960px; margin: 0 auto; padding: 40px; background: #f9f9f9; }
+        .container { background: #fff; padding: 50px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+
+        /* Branding */
+        .brand-header { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #eee; font-size: 0.9em; color: #666; font-style: italic; }
+        .brand-header strong { color: #0b7930; font-style: normal; }
+
+        h1 { color: #0b7930; margin-bottom: 40px; font-size: 2.8em; font-weight: 800; line-height: 1.2; }
+        h2 { color: #1A3C34; margin-top: 60px; font-size: 2em; border-left: 6px solid #0b7930; padding-left: 20px; margin-bottom: 30px; }
+        h3 { color: #0b7930; margin-top: 35px; font-size: 1.5em; margin-bottom: 15px; }
+        h4 { color: #444; margin-top: 25px; font-size: 1.2em; font-weight: 700; margin-bottom: 10px; }
+
+        p { margin-bottom: 15px; font-size: 1.1em; color: #4a5568; }
+
+        /* Formatting */
+        code { background: #e0f2f1; padding: 3px 6px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00695c; font-size: 0.9em; }
+        .step-list { counter-reset: step; list-style: none; padding: 0; }
+        .step-list li { position: relative; padding-left: 50px; margin-bottom: 20px; }
+        .step-list li::before { content: counter(step); counter-increment: step; position: absolute; left: 0; top: -2px; width: 34px; height: 34px; background: #0b7930; color: #fff; text-align: center; line-height: 34px; border-radius: 50%; font-weight: bold; font-size: 1.1em; box-shadow: 0 2px 5px rgba(11, 121, 48, 0.3); }
+        .step-list li strong { color: #1A3C34; font-size: 1.1em; }
+
+        /* Notes & Warnings */
+        .note { background: #e8f5e9; padding: 25px; border-left: 6px solid #0b7930; margin: 30px 0; border-radius: 8px; font-size: 1.05em; }
+        .warning { background: #fff8e1; padding: 25px; border-left: 6px solid #ffa000; margin: 30px 0; border-radius: 8px; }
+        .note strong, .warning strong { display: block; margin-bottom: 10px; text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin: 30px 0; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        th, td { border-bottom: 1px solid #eee; padding: 15px 20px; text-align: left; }
+        th { background-color: #1A3C34; color: #fff; font-weight: 600; text-transform: uppercase; font-size: 0.9em; letter-spacing: 0.5px; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background-color: #fcfcfc; }
+
+        /* TOC */
+        .toc { background: #f1f8e9; padding: 30px; border-radius: 12px; margin-bottom: 60px; border: 1px solid #dcedc8; }
+        .toc h3 { margin-top: 0; color: #33691e; border-bottom: 2px solid #a5d6a7; padding-bottom: 15px; margin-bottom: 20px; }
+        .toc ul { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 40px; }
+        .toc a { text-decoration: none; color: #33691e; border-bottom: 1px dotted #33691e; transition: all 0.2s; font-weight: 500; }
+        .toc a:hover { border-bottom: 2px solid #33691e; color: #1b5e20; }
+
+        @media (max-width: 768px) {
+            body { padding: 20px; }
+            .container { padding: 20px; }
+            .toc ul { grid-template-columns: 1fr; }
+            h1 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="brand-header">
+        Разработка — <strong>Отдел Автоматизации МБУК ЦГБ г. Владимира</strong>
+    </div>
+
+    <h1>Полное руководство администратора<br>темы "City Library"</h1>
+
+    <p>Добро пожаловать! Это подробная инструкция по настройке и управлению сайтом вашей библиотеки. Тема разработана с учетом специфики работы библиотек, требований доступности (версия для слабовидящих) и удобства просмотра на любых устройствах — от смартфонов до информационных киосков.</p>
+
+    <div class="toc">
+        <h3>Оглавление:</h3>
+        <ul>
+            <li><a href="#start">1. С чего начать</a></li>
+            <li><a href="#content">2. Управление контентом (Новости и Страницы)</a></li>
+            <li><a href="#images">3. Справочник по изображениям</a></li>
+            <li><a href="#customizer">4. Визуальная настройка (Customizer)</a></li>
+            <li><a href="#blocks">5. Настройка блоков главной страницы</a></li>
+            <li><a href="#menu">6. Меню и Навигация</a></li>
+            <li><a href="#footer">7. Подвал (Footer) и Контакты</a></li>
+            <li><a href="#accessibility">8. Версия для слабовидящих</a></li>
+            <li><a href="#faq">9. Частые вопросы</a></li>
+        </ul>
+    </div>
+
+    <h2 id="start">1. С чего начать</h2>
+    <p>Для управления сайтом вам необходимо войти в панель администратора WordPress (обычно по адресу <code>ваш-сайт.ru/wp-admin</code>). После входа вы увидите черную панель слева — это ваше главное меню управления.</p>
+    <p>Основные разделы, которые вам понадобятся:</p>
+    <ul>
+        <li><strong>Записи:</strong> Для публикации новостей, анонсов и событий.</li>
+        <li><strong>Страницы:</strong> Для постоянной информации ("О нас", "Правила", "История").</li>
+        <li><strong>Внешний вид -> Настроить:</strong> Самый важный раздел для настройки дизайна.</li>
+        <li><strong>Внешний вид -> Меню:</strong> Для управления ссылками в шапке сайта.</li>
+    </ul>
+
+    <h2 id="content">2. Управление контентом</h2>
+
+    <h3>Создание новости (Записи)</h3>
+    <ol class="step-list">
+        <li>Перейдите в <strong>Записи -> Добавить новую</strong>.</li>
+        <li><strong>Заголовок:</strong> Введите название новости (например, "Библионочь 2024: Как это было"). Старайтесь уложиться в 70 символов.</li>
+        <li><strong>Текст:</strong> Используйте редактор блоков. Чтобы добавить текст, просто начните печатать. Чтобы добавить картинку внутри текста, нажмите "плюсик" (+) и выберите "Изображение".</li>
+        <li><strong>Изображение записи (Featured Image):</strong> В правой колонке настроек найдите вкладку "Запись", прокрутите вниз до блока "Изображение записи" и загрузите главную картинку.
+            <br><em>Это обязательно! Эта картинка будет отображаться на главной странице в сетке новостей.</em>
+        </li>
+        <li><strong>Отрывок (Excerpt):</strong> В правой колонке найдите поле "Отрывок". Напишите 1-2 предложения (анонс). Этот текст выводится под картинкой на главной странице.</li>
+        <li><strong>Рубрики:</strong> Отметьте галочкой нужную рубрику (Новости, Афиша и т.д.).</li>
+        <li>Нажмите <strong>Опубликовать</strong>.</li>
+    </ol>
+
+    <h3>Создание страницы</h3>
+    <ol class="step-list">
+        <li>Перейдите в <strong>Страницы -> Добавить новую</strong>.</li>
+        <li>Процесс аналогичен записям, но страницы не имеют рубрик и меток.</li>
+        <li>Страницы используются для статичной информации. После создания страницу нужно добавить в Меню (см. раздел 6).</li>
+    </ol>
+
+    <h2 id="images">3. Справочник по изображениям</h2>
+    <div class="note">
+        <strong>Важно:</strong> Соблюдение размеров изображений — гарантия того, что сайт будет выглядеть профессионально. Загружайте изображения в формате JPG (для фото) или PNG (для логотипов с прозрачностью).
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Блок / Элемент</th>
+                <th>Рекомендуемый размер</th>
+                <th>Пояснение</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Первый экран (Hero)</strong></td>
+                <td>1920 x 1080 px</td>
+                <td>Большое фоновое изображение. Тема автоматически накладывает затемнение для читаемости текста.</td>
+            </tr>
+            <tr>
+                <td><strong>Карточка новости</strong></td>
+                <td>800 x 600 px (4:3)</td>
+                <td>Или 1200x900. Главное — придерживаться горизонтального формата и одинаковых пропорций для всех новостей.</td>
+            </tr>
+            <tr>
+                <td><strong>Слайдер "Афиша"</strong></td>
+                <td>800 x 1000 px</td>
+                <td>Вертикальный формат (портретный) лучше всего смотрится на мобильных устройствах.</td>
+            </tr>
+            <tr>
+                <td><strong>Промо-блок</strong></td>
+                <td>600 x 400 px</td>
+                <td>Картинка приветствия справа от текста.</td>
+            </tr>
+            <tr>
+                <td><strong>Логотипы партнеров</strong></td>
+                <td>Высота 150-200 px</td>
+                <td>Формат PNG с прозрачным фоном. Ширина любая.</td>
+            </tr>
+            <tr>
+                <td><strong>Иконки "Важное"</strong></td>
+                <td>500 x 500 px</td>
+                <td>Квадратные картинки. Желательно логотипы или простые иконки.</td>
+            </tr>
+            <tr>
+                <td><strong>Модальное окно</strong></td>
+                <td>Любой (адаптируется)</td>
+                <td>Изображение автоматически подстраивается по высоте экрана (max 50% высоты), чтобы не перекрывать кнопку закрытия.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="customizer">4. Визуальная настройка (Customizer)</h2>
+    <p>Все настройки внешнего вида находятся в разделе: <strong>Внешний вид -> Настроить</strong>.</p>
+
+    <h3>Глобальные настройки</h3>
+    <ul>
+        <li><strong>Свойства сайта:</strong> Загрузите логотип библиотеки и измените название сайта.</li>
+        <li><strong>Глобальные цвета:</strong> Выберите "Основной цвет" (например, ваш фирменный зеленый или синий). Кнопки, ссылки и акценты на всем сайте автоматически изменятся.</li>
+        <li><strong>Настройки кнопок:</strong> Задайте форму (круглые, квадратные) и цвета для всех кнопок на сайте.</li>
+        <li><strong>Типографика:</strong> Выберите шрифты для заголовков (например, строгий Inter или классический Merriweather) и основного текста.</li>
+    </ul>
+
+    <h2 id="blocks">5. Настройка блоков главной страницы</h2>
+    <p>Главная страница состоит из блоков, которые можно включать, выключать и настраивать.</p>
+
+    <h3>Блок "Hero" (Первый экран)</h3>
+    <ul>
+        <li><strong>Фон:</strong> Загрузите изображение.</li>
+        <li><strong>Текст:</strong> Измените заголовок ("Твой мир, Твоя библиотека") и подзаголовок.</li>
+        <li><strong>Кнопки:</strong> Вы можете добавить до 2-х кнопок ("Афиша", "Узнать больше"). <br><em>Лайфхак: Если удалить текст кнопки в настройках, кнопка исчезнет с сайта.</em></li>
+        <li><strong>Выравнивание:</strong> Текст можно сдвинуть влево, вправо или оставить по центру.</li>
+        <li><strong>Версия для слабовидящих:</strong> Кнопка "Глаз" автоматически появляется в правом верхнем углу этого блока.</li>
+    </ul>
+
+    <h3>Блок "Афиша мероприятий"</h3>
+    <ul>
+        <li>Это слайдер (листалка) для анонсов.</li>
+        <li>Вы можете загрузить до 5 слайдов. Для каждого слайда задается картинка, заголовок, дата и ссылка.</li>
+        <li>Можно добавить ярлычки, например "NEW" или "Скоро".</li>
+    </ul>
+
+    <h3>Блок "Важная информация"</h3>
+    <ul>
+        <li>Блок с круглыми или квадратными иконками-ссылками (например, "Госуслуги", "НЭБ").</li>
+        <li>Загрузите до 8 картинок и укажите ссылки для них.</li>
+        <li>В настройках можно менять стиль иконок (тень, черно-белый эффект).</li>
+    </ul>
+
+    <h3>Блок "Наши партнеры"</h3>
+    <ul>
+        <li>Загрузите логотипы партнерских организаций (до 8 партнеров).</li>
+        <li><strong>Расположение на десктопе:</strong> Выберите в кастомайзере «2 ряда по 4 логотипа (Рекомендуется)» либо «1 ряд (все логотипы в один ряд)».</li>
+        <li><strong>Размер логотипов:</strong> Используйте настройку "Размер логотипов", чтобы выбрать идеальный масштаб (от XS до 3XL).</li>
+    </ul>
+
+    <h3>Блок "Новости"</h3>
+    <ul>
+        <li>Выводит последние <strong>8 новостей</strong> автоматически.</li>
+        <li>В настройках "Стили карточек новостей" можно изменить цвета заголовков и фона карточек.</li>
+    </ul>
+
+    <h2 id="menu">6. Меню и Навигация</h2>
+    <h3>Настройка верхнего меню</h3>
+    <ol class="step-list">
+        <li>Перейдите в <strong>Внешний вид -> Меню</strong>.</li>
+        <li>Выберите меню для редактирования или создайте новое.</li>
+        <li>Добавьте страницы из списка слева.</li>
+        <li>Чтобы создать выпадающее меню (подпункты), просто перетащите пункт чуть правее под "родительский" пункт.</li>
+        <li>Внизу поставьте галочку <strong>"Primary Menu"</strong> (Основное меню) и сохраните.</li>
+    </ol>
+
+    <h3>Мобильное меню</h3>
+    <p>На мобильных устройствах меню сворачивается в кнопку "Меню". Дизайн мобильного меню ("шторка") настраивается в разделе <strong>"Нижнее мобильное меню"</strong> в Customizer. Вы можете выбрать один из 10 стилей (например, "iOS Blur" или "Neon").</p>
+
+    <h2 id="footer">7. Подвал (Footer), счетчики и продление книг</h2>
+    <p>В настройках подвала и аналитики доступны следующие возможности:</p>
+    <ul>
+        <li><strong>Контакты:</strong> Указать телефон, Email и Адрес. Они появятся автоматически.</li>
+        <li><strong>Соцсети:</strong> Вставьте ссылки на вашу группу ВКонтакте, Telegram, Одноклассники или YouTube. Иконки появятся сами.</li>
+        <li><strong>Счетчик «ПРО.Культура.РФ» и аналитика:</strong> Раздел <em>«Счетчики и аналитика»</em> в Customizer позволяет в один клик включить счетчик «ПРО.Культура.РФ», указав ID учреждения в ЕИПСК или вставив готовый HTML/JS-код из личного кабинета pro.culture.ru. Также доступна вставка кодов Яндекс.Метрики и Google Analytics.</li>
+        <li><strong>Виджетная зона счетчиков:</strong> В разделе <em>«Внешний вид -> Виджеты»</em> доступна зона <em>«Счетчики и аналитика (Footer Bottom)»</em>, а также 4 колонки футера (Footer 1..4). Любые информеры выводятся внизу страницы рядом с копирайтом.</li>
+        <li><strong>Email адреса филиалов (Продление книг):</strong> Заявки читателей на продление книг автоматически доставляются на электронную почту выбранного филиала. Email можно настроить:
+            <ul>
+                <li>В меню <strong>Внешний вид -> Настроить -> Email адреса филиалов</strong> (для каждого филиала и резервный email);</li>
+                <li>Или напрямую в карточке филиала в меню <strong>«Библиотеки (Карта)»</strong> в поле <em>Email</em>.</li>
+            </ul>
+        </li>
+        <li><strong>Карта:</strong> Включить Яндекс.Карту (потребуются координаты).</li>
+        <li><strong>Стиль:</strong> Выберите "Centered" (По центру) для чистого дизайна с белым фоном, или "Default" для темного подвала.</li>
+    </ul>
+
+    <h2 id="accessibility">8. Версия для слабовидящих</h2>
+    <div class="note">
+        <strong>Всё включено:</strong> Тема соответствует стандарту доступности (ГОСТ).
+    </div>
+    <p>В правом верхнем углу сайта всегда доступна кнопка "Версия для слабовидящих". Она переключает три режима:</p>
+    <ol>
+        <li><strong>Обычный:</strong> Стандартный дизайн.</li>
+        <li><strong>Крупный шрифт:</strong> Увеличение текста на 30%.</li>
+        <li><strong>Высокая контрастность (AAA):</strong> Черный фон, белый текст, желтые ссылки. Все декоративные элементы скрываются для максимальной читаемости.</li>
+    </ol>
+    <p>Выбор пользователя запоминается и сохраняется при переходе между страницами.</p>
+
+    <h2 id="faq">9. Частые вопросы</h2>
+
+    <div class="warning">
+        <strong>Вопрос:</strong> Я загрузил картинку, а она обрезалась.<br>
+        <strong>Ответ:</strong> Проверьте размеры. Скорее всего, картинка была слишком маленькой или квадратной там, где нужна прямоугольная. См. раздел 3.
+    </div>
+
+    <div class="warning">
+        <strong>Вопрос:</strong> Кнопка в блоке "Hero" не исчезает, хотя я удалил ссылку.<br>
+        <strong>Ответ:</strong> Нужно удалить <strong>текст</strong> кнопки в настройках, а не только ссылку.
+    </div>
+
+    <div class="warning">
+        <strong>Вопрос:</strong> Модальное окно (всплывающее объявление) не появляется.<br>
+        <strong>Ответ:</strong> Оно показывается одному посетителю только один раз за сессию (чтобы не надоедать). Попробуйте открыть сайт в режиме "Инкогнито", чтобы увидеть его снова. Также проверьте настройку "Задержка" — если стоит 0, оно появится сразу при загрузке.
+    </div>
+
+    <p style="text-align: center; margin-top: 60px; color: #999; font-size: 0.9em; border-top: 1px solid #eee; padding-top: 20px;">
+        Разработано Отделом Автоматизации МБУК ЦГБ г. Владимира &bull; 2024
+    </p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+/* Dark Theme */
+.dark body { background: #0f172a; color: #f1f5f9; }
+.dark .bg-white, .dark .bg-background-light { background: #1e293b !important; }
+.dark .bg-slate-100, .dark .bg-slate-50 { background: #1e293b !important; }
+.dark .border-slate-100, .dark .border-slate-200, .dark .border-slate-300 { border-color: #334155 !important; }
+.dark .text-slate-900, .dark .text-slate-800 { color: #f1f5f9 !important; }
+.dark .text-slate-700, .dark .text-slate-600 { color: #cbd5e1 !important; }
+.dark .text-slate-500 { color: #94a3b8 !important; }
+.dark .text-slate-400 { color: #64748b !important; }
+.dark .shadow-lg, .dark .shadow-xl, .dark .shadow-md { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3); }
+.dark .card, .dark .bg-pattern-slate { background: #1e293b; border-color: #334155; }

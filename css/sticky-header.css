@@ -1,0 +1,21 @@
+
+/* Sticky Header Logic */
+/* Logo hiding removed as per request */
+/*
+#masthead.header-scrolled #site-identity {
+    max-width: 0;
+    opacity: 0;
+    margin-right: 0;
+    padding: 0;
+}
+*/
+
+#masthead.header-scrolled nav {
+    justify-content: center;
+}
+
+/* Ensure actions stay visible */
+#search-toggle, #accessibility-button {
+    /* Basic styling to match theme */
+    color: inherit;
+}

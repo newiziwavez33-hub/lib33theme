@@ -1,0 +1,20 @@
+# WordPress Theme - Git Ignore
+*.bak
+*.tmp
+*~
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Node / Package managers (if added later)
+node_modules/
+vendor/

@@ -1,0 +1,338 @@
+/* Magic Mode (Harry Potter / Daily Prophet Style) */
+
+/* 1. Global Container & Background */
+.hp-magic-active body {
+    background-color: #f0e6d2;
+    background-image:
+        repeating-linear-gradient(120deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 1px, transparent 1px, transparent 60px),
+        repeating-linear-gradient(60deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 1px, transparent 1px, transparent 60px),
+        linear-gradient(to bottom, #d4c5a9 0%, #f0e6d2 20%, #f0e6d2 80%, #d4c5a9 100%),
+        url('https://www.transparenttextures.com/patterns/aged-paper.png'); /* Fallback/Placeholder texture */
+    background-attachment: fixed;
+    color: #2b2b2b;
+    font-family: 'Crimson Text', serif;
+    transition: background 0.5s ease;
+    overflow-x: hidden;
+}
+
+/* Ink Blots Overlay */
+.hp-magic-active body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(0,0,0,0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0,0,0,0.05) 0%, transparent 25%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 2. Typography */
+.hp-magic-active h1,
+.hp-magic-active h2,
+.hp-magic-active h3,
+.hp-magic-active h4,
+.hp-magic-active h5,
+.hp-magic-active h6,
+.hp-magic-active .font-display {
+    font-family: 'Cinzel', serif !important;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    letter-spacing: 1px;
+}
+
+.hp-magic-active p,
+.hp-magic-active li,
+.hp-magic-active a {
+    font-family: 'Crimson Text', serif;
+    color: #2b2b2b;
+}
+
+/* 3. Header Section */
+.hp-magic-active #masthead {
+    background: transparent !important;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    padding-top: 2rem;
+    position: relative;
+}
+
+/* Hide default header elements when magic active */
+.hp-magic-active #masthead .custom-logo-wrapper,
+.hp-magic-active #masthead nav,
+.hp-magic-active #masthead #accessibility-button {
+    display: none !important;
+}
+
+/* Magic Header (Injected via JS) Styles */
+.hp-magic-header {
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+.hp-masthead-title {
+    font-size: 3rem; /* Fallback */
+    font-size: clamp(2rem, 5vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+.hp-ticker {
+    border-top: 2px solid #1a1a1a;
+    border-bottom: 2px solid #1a1a1a;
+    padding: 0.5rem 0;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    background: rgba(0,0,0,0.02);
+}
+
+.hp-ticker-content {
+    display: inline-block;
+    animation: ticker 20s linear infinite;
+}
+
+@keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Folded Navigation */
+.hp-nav-parchment {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin: 2rem auto;
+    perspective: 1000px;
+    flex-wrap: wrap;
+}
+
+.hp-nav-item {
+    background: #e8dbc3;
+    padding: 1rem 1.5rem;
+    border: 1px solid #c0b398;
+    border-right: 1px dashed #8b7d6b;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: #3b2f2f;
+    text-decoration: none;
+    position: relative;
+    transition: transform 0.3s, background 0.3s;
+    transform-origin: left;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.hp-nav-item:hover {
+    background: #fdf5e6;
+    transform: rotateY(-5deg) scale(1.05);
+    z-index: 10;
+}
+
+.hp-nav-item:last-child {
+    border-right: 1px solid #c0b398;
+}
+
+/* 4. Main Content Layout (Newspaper Grid) */
+.hp-magic-active #primary {
+    width: 100% !important; /* Force full width override */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hp-magic-active .content-area {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    background-image: none !important; /* Remove original SVG pattern */
+}
+
+/* Force Grid */
+.hp-magic-active #posts-container {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 2rem !important;
+    padding: 2rem;
+}
+
+/* Newspaper Article Card */
+.hp-magic-active article {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #8b7d6b !important;
+    padding-bottom: 2rem !important;
+    border-radius: 0 !important;
+}
+
+.hp-magic-active article:nth-child(even) {
+    border-left: 1px solid #8b7d6b;
+    padding-left: 1rem;
+}
+
+.hp-magic-active article h3 a {
+    font-family: 'Cinzel', serif !important;
+    font-weight: 900 !important;
+    font-size: 1.5rem !important;
+    color: #1a1a1a !important;
+    text-transform: uppercase;
+}
+
+.hp-magic-active article img {
+    filter: sepia(0.8) contrast(1.2);
+    border: 3px double #1a1a1a;
+    transition: filter 0.3s;
+}
+
+.hp-magic-active article:hover img {
+    filter: sepia(0.4) contrast(1);
+}
+
+/* 5. Special Modules */
+/* Ministry Decree */
+.hp-ministry-decree {
+    background: #fdf5e6;
+    border: 4px solid #1a1a1a;
+    padding: 2rem;
+    text-align: center;
+    margin: 3rem auto;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+}
+
+.hp-ministry-decree h2 {
+    font-size: 2.5rem;
+    border-bottom: 2px solid #1a1a1a;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.hp-wax-seal-btn {
+    display: inline-block;
+    background: #8a0303; /* Deep Red */
+    color: #fff !important;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    line-height: 80px;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    font-size: 0.8rem;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 2px 2px 5px rgba(0,0,0,0.3);
+    border: 2px dashed #b22222;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.hp-wax-seal-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Wanted Posters */
+.hp-wanted-section {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+}
+
+.hp-wanted-poster {
+    background: #e8dbc3;
+    border: 2px solid #3b2f2f;
+    padding: 1rem;
+    width: 250px;
+    text-align: center;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+    transform: rotate(2deg);
+}
+
+.hp-wanted-poster:nth-child(even) {
+    transform: rotate(-2deg);
+}
+
+.hp-wanted-poster img {
+    width: 100%;
+    filter: grayscale(100%) contrast(1.5);
+    border: 1px solid #000;
+    margin-bottom: 0.5rem;
+}
+
+/* 6. Footer Section */
+.hp-magic-active .site-footer,
+.hp-magic-active footer {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #3b2f2f !important;
+    border-top: none !important;
+    position: relative;
+    padding-bottom: 4rem;
+}
+
+/* Scroll Bottom Effect */
+.hp-magic-active footer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%; /* wider than screen to look like scroll */
+    height: 60px;
+    background: linear-gradient(to right, #8b7d6b, #e8dbc3, #fdf5e6, #e8dbc3, #8b7d6b);
+    border-radius: 30px / 10px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+}
+
+.hp-footer-content {
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Footprint Animation */
+.hp-footprint {
+    position: fixed;
+    width: 20px;
+    height: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Cpath d='M30,10 C20,30 10,60 15,90 C20,110 40,140 60,130 C80,120 70,80 60,60 C50,40 40,0 30,10 Z' fill='%233b2f2f' opacity='0.6'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 50;
+    transition: opacity 1s;
+}
+
+.hp-footprint.visible {
+    opacity: 0.6;
+}
+
+/* Hide Promo/Afisha/Important/Sidebar when active to simplify layout?
+   User said "Main content must transform".
+   Let's just restyle them or hide strictly modern blocks.
+*/
+.hp-magic-active .section-promo,
+.hp-magic-active .section-afisha,
+.hp-magic-active .section-important,
+.hp-magic-active #secondary {
+    /* We might want to hide sidebar for a clean newspaper look or style it */
+    display: none !important;
+}
+
+/* Override Hero Section */
+.hp-magic-active .hero-section,
+.hp-magic-active section[class*="hero"] {
+    display: none !important;
+}
